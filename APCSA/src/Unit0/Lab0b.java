@@ -16,7 +16,6 @@ public class Lab0b
 		int intOne = 12345678;
 		long longOne = 1234245345;
 
-
 		//decimal variables
 		float floatOne = 100000.0f;
 		double doubleOne = 1000000.00;
