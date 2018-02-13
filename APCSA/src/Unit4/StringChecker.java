@@ -8,13 +8,13 @@ public class StringChecker
 
 	public StringChecker()
 	{
-
+		word = "asdfasdf";
 
 	}
 
 	public StringChecker(String s)
 	{
-
+		word = s;
 
 	}
 
@@ -25,18 +25,24 @@ public class StringChecker
 
 	public boolean findLetter(char c)
 	{
+		if (word.indexOf(c) != -1){
+			return true;
+		}
 
-
-
-		return false;
+		else {
+			return false;
+		}
 	}
 
 	public boolean findSubString(String s)
 	{
 
-
-
-		return false;
+		if (word.contains(s)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
  	public String toString()

@@ -8,30 +8,32 @@ public class Name
 
 	public Name()
 	{
-
+		name = "asdf";
 
 	}
 
 	public Name(String s)
 	{
-
+		name = s;
 
 	}
 
    public void setName(String s)
    {
-
+	   name = s;
 
    }
 
 	public String getFirst()
 	{
-		return "";
+		int stringindex = name.indexOf(" ");
+		return name.substring(0, stringindex);
 	}
 
 	public String getLast()
 	{
-		return "";
+		int stringindex = name.indexOf(" ");
+		return name.substring(stringindex + 1, name.length());
 	}
 
  	public String toString()
