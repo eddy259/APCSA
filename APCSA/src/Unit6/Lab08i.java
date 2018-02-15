@@ -9,7 +9,9 @@ public class Lab08i
 	{
 		//add test cases
 		
+		Prime test = new Prime(7);
 		
+		String output = test.toString();
 		
 		
 		
