@@ -6,7 +6,7 @@ import static java.lang.System.*;
 
 public class GuessingGame
 {
-	private int upperBound;
+	private double upperBound;
 
 	public GuessingGame(int stop)
 	{
@@ -28,8 +28,9 @@ public class GuessingGame
 		}while (guess != goal);
 
 		System.out.println("The answer was" + goal);
-		double calc = counter/upperBound;
-		System.out.println("You guessed wrong " + calc + "percent of the time");
+		double percentwrong = 100*((counter-1)/upperBound);
+		System.out.println(percentwrong);
+		System.out.println("You guessed wrong " + percentwrong + " percent of the time");
 
 	}
 

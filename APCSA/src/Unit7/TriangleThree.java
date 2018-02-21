@@ -9,14 +9,20 @@ public class TriangleThree
 
 	public TriangleThree()
 	{
+		size = 3;
+		letter = "A";
 	}
 
 	public TriangleThree(int count, String let)
 	{
+		size = count;
+		letter = let;
 	}
 
 	public void setTriangle( String let, int sz )
 	{
+		size = sz;
+		letter = let;
 	}
 
 	public String getLetter()
@@ -26,7 +32,25 @@ public class TriangleThree
 
 	public String toString()
 	{
-		String output="";
-		return output+"\n";
+		String out ="";
+		
+		for(int i = 1; i <= size; i++){
+			
+			for(int c = size; c > i; c--){
+				out = out + " ";
+				
+			}
+			
+			for(int r = 1; r <= i; r++){
+				out = out + letter;
+			}
+			
+			out = out + "\n";
+		}
+		
+		
+		
+		
+		return out+"\n";
 	}
 }
