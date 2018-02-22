@@ -51,18 +51,52 @@ public class Triples
 	
 	public boolean firstCondition(int a, int b, int c){
 		
-		return true;	
+		if ((Math.pow(a, 2) + Math.pow(b, 2)) == Math.pow(c, 2)){ 
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
+	public boolean secondCondition(int a, int b, int c){
+		if(c % 2 == 0){
+			return false;
+		}
+		if(a %2 == 0 && b%2 == 1){
+			return true;
+		}
+		else if(a%2 == 1 && b%2 == 0){
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+		
+		
+	}
 	
 	public String toString()
 	{
 		String output="";
 
-
-
-
-
+		for(int a = 1; a < number; a ++){
+			for(int b = a;b < number -1; b++){
+				for(int c = b; c < number; c++){
+					if(c * c != a * a + b * b){
+						continue;
+					}
+					if( greatestCommonFactor(a,b,c) == 1 && secondCondition(a,b,c) == true){
+						output = output + a + " " + b + " " + c + "\n";
+					
+					}
+					
+					
+				}
+			}
+			
+		}
 
 		return output+"\n";
 	}
