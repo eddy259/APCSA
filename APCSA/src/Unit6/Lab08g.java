@@ -6,7 +6,7 @@ public class Lab08g
 {
 	public static void main ( String[] args )
 	{
-		LoopStats test = new LoopStats(1,5);
+		LoopStats test = new LoopStats(2,5);
 		test.getEvenCount();
 		test.getOddCount();
 		test.getTotal();

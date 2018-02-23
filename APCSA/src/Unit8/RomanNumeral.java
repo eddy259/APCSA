@@ -16,21 +16,46 @@ public class RomanNumeral
 	public RomanNumeral(String str)
 	{
 
-
+		roman = str;
+		for(int i = 0; i < roman.length() - 1; i++){
+			//checks if either the single letter or double letter combo is in the list, if it is then converts it to integer
+			//takes advantage of the fact that the max length is only two letters
+			String s1 = roman.substring(i, i+1);
+			String s2 = roman.substring(i, i+2);
+			boolean converted = false;
+			for(int c = 0; c < LETTERS.length; c++){
+				if (LETTERS[c] == s2){
+					//convert to int
+					converted = true;
+				}	
+			}
+			
+			if (converted == false){
+				for(int c = 0; c < LETTERS.length; c++){
+					if (LETTERS[c] == s1){
+						//convert to int
+						converted = true;
+					}
+					
+				}
+			}
+		}
+//convert from roman to int
 
 	}
 
 	public RomanNumeral(Integer orig)
 	{
 
-
+		number = orig;
+//convert from int to roman
 
 	}
 
 	public void setNumber(Integer num)
 	{
 
-
+		number = num;
 
 
 
@@ -39,7 +64,7 @@ public class RomanNumeral
 	public void setRoman(String rom)
 	{
 
-
+		roman = rom;
 
 	}
 

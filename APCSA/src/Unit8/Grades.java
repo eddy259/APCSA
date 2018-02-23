@@ -72,7 +72,16 @@ public class Grades
 	//toString method
 	public String toString()
 	{
-		return "";
+		String out = "";
+		
+		for(int i = 0; i < actualgradesarray.length; i++){
+			out = out + "Grade " + i + ":: " + actualgradesarray[i] + "\n";
+			
+		}
+		
+		out = out + "\n \n" + "Average: " + getAverage();
+		
+		return out;
 	}
 
 
