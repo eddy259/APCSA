@@ -12,6 +12,7 @@ public class Grades
 
 	//constructor
 	public Grades (int tempmax, String input){
+		
 		Scanner in = new Scanner(input);
 		
 		max = tempmax;
