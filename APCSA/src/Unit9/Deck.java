@@ -1,5 +1,7 @@
 package Unit9;
 
+import java.util.Arrays;
+
 public class Deck {
 
 	/**
@@ -15,7 +17,7 @@ public class Deck {
 	 * Cards are dealt from the top (highest index) down.
 	 * The next card to be dealt is at size - 1.
 	 */
-	private int size;
+	private int size = 0;
 
 	String[] ranks = {"ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"};
 	String[] suits = {"clubs", "spades", "hearts", "diamonds"};
@@ -30,11 +32,29 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		cards = new Card[52];
-		for (Card c : cards){
-			
+		size = ranks.length * suits.length;
+		cards = new Card[size];
+		//this.ranks = ranks;
+		//this.suits = suits;
+		//this.values = values;
+		
+		/*
+		for (int i = 1; i <= size; i++){
+			//assumes deck is 52
+			//cards[i] = new Card(ranks[i%13], suits[i/13], values[i%13]);
+		}
+		*/
+		int counter = 0;
+		
+		for (int i = 0; i < suits.length; i++){
+			for (int c = 0; c < ranks.length; c++){
+				cards[counter] = new Card(ranks[c], suits[i], values[c]); 
+			}
 		}
 		
+		for(Card e: cards){
+			System.out.println(e.toString());
+		}
 	}
 
 
@@ -44,7 +64,12 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (size == 0){
+			
+			return true;
+		}
 		
+		return false;
 		
 		
 	}
@@ -55,6 +80,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return size;
 	}
 
 	/**
@@ -72,6 +98,13 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (isEmpty()){
+			return null;
+		}
+		else {
+			size--;
+			return cards[size + 1];
+		}
 	}
 
 	/**
