@@ -49,6 +49,7 @@ public class Deck {
 		for (int i = 0; i < suits.length; i++){
 			for (int c = 0; c < ranks.length; c++){
 				cards[counter] = new Card(ranks[c], suits[i], values[c]); 
+				counter++;
 			}
 		}
 		

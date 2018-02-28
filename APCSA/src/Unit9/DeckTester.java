@@ -15,6 +15,11 @@ public class DeckTester {
 		
 		Deck testdeck = new Deck(ranks, suits, values);
 		
+		if (!testdeck.isEmpty()){
+			System.out.println("not empty");
+		}
+		
+		
 		
 	}
 }
