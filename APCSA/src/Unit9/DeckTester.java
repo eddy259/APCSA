@@ -15,6 +15,12 @@ public class DeckTester {
 		
 		Deck testdeck = new Deck(ranks, suits, values);
 		
+		System.out.println("\n\n\n");
+		
+		testdeck.shuffle();
+		
+		System.out.println(testdeck.toString());
+		
 		if (!testdeck.isEmpty()){
 			System.out.println("not empty");
 		}

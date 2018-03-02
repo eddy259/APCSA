@@ -66,6 +66,12 @@ public class Shuffler {
 			shuffled[k] = values[j];
 			k = k + 2;
 		}
+		
+		for(int i = 0; i < shuffled.length; i++){
+			values[i]=shuffled[i];
+		}
+		
+		
 	}
 
 	/**
@@ -81,5 +87,13 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		
+		for(int k = values.length - 1; k > 0; k--){
+			int r = (int)(Math.random() * k);
+			int temp = values[k];
+			values[k] = values[r];
+			values[r] = temp;
+			
+		}
 	}
 }

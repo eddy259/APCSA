@@ -53,9 +53,9 @@ public class Deck {
 			}
 		}
 		
-		for(Card e: cards){
-			System.out.println(e.toString());
-		}
+//		for(Card e: cards){
+//			System.out.println(e.toString());
+//		}
 	}
 
 
@@ -70,8 +70,10 @@ public class Deck {
 			return true;
 		}
 		
-		return false;
-		
+		else{
+			
+			return false;
+		}
 		
 	}
 
@@ -90,6 +92,17 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		for(int k = this.size() - 1; k > 0; k--){
+			int r = (int)(Math.random() * k);
+			Card temp = cards[k];
+			cards[k] = cards[r];
+			cards[r] = temp;
+			
+		}
+		
+//		for(Card e: cards){
+//			System.out.println(e.toString());
+//		}
 	}
 
 	/**
@@ -99,12 +112,14 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		if (isEmpty()){
+		if (isEmpty() == true){
+			System.out.println("No more cards to deal");
 			return null;
 		}
 		else {
 			size--;
-			return cards[size + 1];
+			//size is length of the deck, so cards[size] is conveniently the index of the card you just removed after you size --
+			return cards[size];
 		}
 	}
 
@@ -116,7 +131,20 @@ public class Deck {
 	public String toString() {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
-
+		for(int i = 0;i < this.size();i++){
+			rtn = rtn + cards[i].toString() + "\n";
+		}
+		
+		rtn += "\n Dealt cards: \n";
+		
+		for(int i = this.size(); i < cards.length;i++){
+			rtn = rtn + cards[i].toString() + "\n";  
+		}
+		
+		if(this.size() == cards.length){
+			rtn = rtn + "No dealt cards";
+		}
+		
 		//Unit 9 - modify to work with Arrays
 		/*
 		for (int k = size - 1; k >= 0; k--) {
