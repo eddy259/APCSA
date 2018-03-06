@@ -22,7 +22,8 @@ public class MadLib
 		
 		try{
 			Scanner file = new Scanner(new File(System.getProperty("user.dir")+"\\src\\unit10\\story.dat"));
-			s = file.nextLine();		
+			
+			s = file.nextLine();	
 
 		
 		}
@@ -31,7 +32,24 @@ public class MadLib
 			out.println("Houston we have a problem!");
 		}
 		
+		String answer = "";
+		for(int i = 0; i < s.length(); i++){
+			if (s.charAt(i) == '#'){
+				answer = answer + getRandomNoun();
+			}
+			else if (s.charAt(i) == '@'){
+				answer = answer + getRandomVerb();
+			}
+			else if (s.charAt(i) == '&'){
+				answer = answer + getRandomAdjective();
+			}
+			else {
+				answer = answer + s.charAt(i);
+			}
+		}
 
+		
+		
 	}
 
 	public MadLib(String fileName)
