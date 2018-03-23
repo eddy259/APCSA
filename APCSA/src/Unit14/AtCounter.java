@@ -12,7 +12,12 @@ public class AtCounter
 {
    private char[][] atMat;
    private int atCount;
-
+   private boolean[][] visited;
+   private boolean firstrun = true;
+   private int rp;
+   private int cp;
+   
+   
 	public AtCounter()
 	{
 		atCount=0;
@@ -26,16 +31,42 @@ public class AtCounter
 									{'-','@','@','@','-','@','-','-','-','-'},
 									{'-','@','-','@','-','@','-','@','@','@'},
 									{'-','@','@','@','@','@','-','@','@','@'}};
+	
+		visited = new boolean[10][10];
+	
 	}
+	
 
-	public int countAts(int r, int c)
+	public void countAts(int r, int c)
 	{
 
 		//add in recursive code to count up the # of @s connected
 		//start checking at spot [r,c]
-
-
-		return 0;
+		
+		if (firstrun == true){
+			firstrun = false;
+			rp = r;
+			cp = c;
+		}
+		
+		//System.out.println(r + " " +  c);
+		if ((0 <= r && r < atMat.length) && (0 <= c && c < atMat[0].length) && atMat[r][c] == '@'){
+			if (visited[r][c] == false){
+				//System.out.println("Count");
+				visited[r][c] = true;
+				atCount++;
+				countAts(r+1,c);
+				countAts(r,c+1);
+				countAts(r-1,c);
+				countAts(r,c-1);
+			}
+			
+			
+			
+			
+		}
+		
+		return;
 	}
 
 	public int getAtCount()
@@ -45,8 +76,8 @@ public class AtCounter
 
 	public String toString()
 	{
-		String output="";
-		output+=getAtCount()+" @s connected.";
+		String output= rp + " " + cp + " has ";
+		output += getAtCount() + " @s connected.";
 		return output;
 	}
 }

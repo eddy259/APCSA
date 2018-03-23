@@ -13,5 +13,11 @@ public class Lab21g
 		//instantiate an AtCounter
 
 		//test the code
+		
+		AtCounter test = new AtCounter();
+		test.countAts(0,9);
+		System.out.println(test);
+		
+		
 	}
 }
