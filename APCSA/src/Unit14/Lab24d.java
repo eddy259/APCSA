@@ -4,24 +4,20 @@
 //Class - 
 //Lab  -
 package Unit14;
-import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 import static java.lang.System.*;
 
+import java.util.*;
+import java.io.*;
 public class Lab24d
 {
 	public static void main( String args[] ) throws IOException
 	{
-		Scanner file = new Scanner (new File("Lab24d.dat"));
-
-
-
-
-
-
-
-
+		BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir")+"\\APCSA\\src\\Unit14\\"+"lab24d.dat"));
+		int n = Integer.parseInt(br.readLine());
+		for(int i=0;i<n;i++){
+			System.out.println(new TicTacToe(br.readLine()));
+		}
 	}
 }
 
