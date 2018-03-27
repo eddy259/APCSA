@@ -2,11 +2,12 @@ package Elevens;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The ElevensBoard class represents the board in a game of Elevens.
  */
-public class ElevensBoard {
+public class ElevensBoard extends Board{
 
 	/**
 	 * The size (number of cards) on the board.
@@ -52,6 +53,7 @@ public class ElevensBoard {
 	 * Creates a new <code>ElevensBoard</code> instance.
 	 */
 	public ElevensBoard() {
+		super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
 		cards = new Card[BOARD_SIZE];
 		deck = new Deck(RANKS, SUITS, POINT_VALUES);
 		if (I_AM_DEBUGGING) {
@@ -187,6 +189,15 @@ public class ElevensBoard {
 	 */
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (containsPairSum11(selectedCards)){
+			return true;
+		}
+		if (containsJQK(selectedCards)){
+			return true;
+		}
+		
+		return false;
+		
 	}
 
 	/**
@@ -199,6 +210,18 @@ public class ElevensBoard {
 	 */
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for (int i = 0; i < cardIndexes().size(); i++){
+			for(int k = 0; k < cardIndexes().size(); k++){
+				if(k != i){
+					if (isLegal(new ArrayList<Integer>(Arrays.asList(k, i)))){
+						return true;
+					}
+				}
+			}
+			
+		}
+		
+		return false;
 	}
 
 
@@ -221,6 +244,22 @@ public class ElevensBoard {
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		int sum = 0;
+		if (selectedCards.size() != 2){
+			return false;
+		}
+		
+		for (int i : selectedCards){
+			sum += cards[i].pointValue();
+		}
+		
+		if (sum == 11){
+			return true;
+		}
+		
+		return false;
+		
+		
 	}
 
 	/**
@@ -232,6 +271,32 @@ public class ElevensBoard {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
+		boolean j = false;
+		boolean q = false;
+		boolean k = false;
+		
+		if (selectedCards.size() == 3){
+			for (int i = 0; i < 3; i++){
+				if (cards[selectedCards.get(i)].rank().equals("jack")){
+					j = true;
+				}
+				if (cards[selectedCards.get(i)].rank().equals("queen")){
+					q = true;
+				}
+				if (cards[selectedCards.get(i)].rank().equals("king")){
+					k = true;
+				}
+				
+			}
+		}
+		
+		
+		if (j == true && q == true && k == true){
+			return true;
+		}
+		
+		return false;
+		
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}
 }
