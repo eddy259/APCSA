@@ -92,6 +92,8 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		size = 52;
+		
 		for(int k = this.size() - 1; k > 0; k--){
 			int r = (int)(Math.random() * k);
 			Card temp = cards[k];
@@ -99,6 +101,8 @@ public class Deck {
 			cards[r] = temp;
 			
 		}
+		
+	
 		
 //		for(Card e: cards){
 //			System.out.println(e.toString());

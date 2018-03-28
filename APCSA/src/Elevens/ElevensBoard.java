@@ -36,12 +36,12 @@ public class ElevensBoard extends Board{
 	/**
 	 * The cards on this board.
 	 */
-	private Card[] cards;
+	//private Card[] cards;
 
 	/**
 	 * The deck of cards being used to play the current game.
 	 */
-	private Deck deck;
+	//private Deck deck;
 
 	/**
 	 * Flag used to control debugging print statements.
@@ -54,13 +54,14 @@ public class ElevensBoard extends Board{
 	 */
 	public ElevensBoard() {
 		super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
-		cards = new Card[BOARD_SIZE];
-		deck = new Deck(RANKS, SUITS, POINT_VALUES);
-		if (I_AM_DEBUGGING) {
-			System.out.println(deck);
-			System.out.println("----------");
-		}
-		dealMyCards();
+//		cards = new Card[BOARD_SIZE];
+//		deck = new Deck(RANKS, SUITS, POINT_VALUES);
+//		if (I_AM_DEBUGGING) {
+//			System.out.println(deck);
+//			System.out.println("----------");
+//		}
+//		deck.shuffle();
+//		dealMyCards();
 	}
 
 	/**
@@ -189,10 +190,10 @@ public class ElevensBoard extends Board{
 	 */
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		if (containsPairSum11(selectedCards)){
+		if (selectedCards.size() == 2 && containsPairSum11(selectedCards)){
 			return true;
 		}
-		if (containsJQK(selectedCards)){
+		if (selectedCards.size() == 3 && containsJQK(selectedCards)){
 			return true;
 		}
 		
@@ -210,11 +211,27 @@ public class ElevensBoard extends Board{
 	 */
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		
+		List<Integer> cindexes = cardIndexes();
+		
 		for (int i = 0; i < cardIndexes().size(); i++){
 			for(int k = 0; k < cardIndexes().size(); k++){
 				if(k != i){
-					if (isLegal(new ArrayList<Integer>(Arrays.asList(k, i)))){
+					if (isLegal(new ArrayList<Integer>(Arrays.asList(cindexes.get(k), cindexes.get(i))))){
 						return true;
+					}
+				}
+			}
+			
+		}
+		
+		for (int i = 0; i < cardIndexes().size(); i++){
+			for(int k = 0; k < cardIndexes().size(); k++){
+				for(int x = 0; x < cardIndexes().size(); x++){
+					if(k != i && k != x){
+						if (isLegal(new ArrayList<Integer>(Arrays.asList(cindexes.get(k), cindexes.get(i), cindexes.get(x))))){
+							return true;
+						}
 					}
 				}
 			}
@@ -245,9 +262,9 @@ public class ElevensBoard extends Board{
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		int sum = 0;
-		if (selectedCards.size() != 2){
-			return false;
-		}
+//		if (selectedCards.size() != 2){
+//			return false;
+//		}
 		
 		for (int i : selectedCards){
 			sum += cards[i].pointValue();
@@ -275,19 +292,32 @@ public class ElevensBoard extends Board{
 		boolean q = false;
 		boolean k = false;
 		
-		if (selectedCards.size() == 3){
-			for (int i = 0; i < 3; i++){
-				if (cards[selectedCards.get(i)].rank().equals("jack")){
-					j = true;
-				}
-				if (cards[selectedCards.get(i)].rank().equals("queen")){
-					q = true;
-				}
-				if (cards[selectedCards.get(i)].rank().equals("king")){
-					k = true;
-				}
-				
+//		if (selectedCards.size() == 3){
+//			for (int i = 0; i < 3; i++){
+//				if (cards[selectedCards.get(i)].rank().equals("jack")){
+//					j = true;
+//				}
+//				if (cards[selectedCards.get(i)].rank().equals("queen")){
+//					q = true;
+//				}
+//				if (cards[selectedCards.get(i)].rank().equals("king")){
+//					k = true;
+//				}
+//				
+//			}
+//		}
+		
+		for (int i = 0; i < 3; i++){
+			if (cards[selectedCards.get(i)].rank().equals("jack")){
+				j = true;
 			}
+			if (cards[selectedCards.get(i)].rank().equals("queen")){
+				q = true;
+			}
+			if (cards[selectedCards.get(i)].rank().equals("king")){
+				k = true;
+			}
+			
 		}
 		
 		
