@@ -8,7 +8,7 @@ package Unit15;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block implements Collidable
 {
 	private int xSpeed;
 	private int ySpeed;
@@ -114,4 +114,24 @@ public class Ball extends Block
 		return super.toString() + " " + getxSpeed() + " " + getySpeed();
 		
 	}
+	
+	public boolean didCollideLeft(Object obj){
+		Paddle p = (Paddle)obj;
+		
+		
+		return false;
+	}
+	
+	public boolean didCollideRight(Object obj){
+		return false;
+	}
+	
+	public boolean didCollideTop(Object obj){
+		return false;
+	}
+	
+	public boolean didCollideBottom(Object obj){
+		return false;
+	}
+	
 }
