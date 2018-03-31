@@ -11,7 +11,7 @@ public class ElevensGUIRunner {
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
-		Board board = new ElevensBoard();
+		Board board = new ElevensBoardLabAssessment();
 		CardGameGUI gui = new CardGameGUI(board);
 		gui.displayGame();
 	}
