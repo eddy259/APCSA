@@ -25,6 +25,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private int p1score;
 	private int p2score;
 	private boolean done;
+	private Wall top, bottom, left, right;
 
 
 	public Pong()
@@ -35,6 +36,10 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		leftPaddle = new Paddle(50, 100, 10, 100, Color.RED, 5);
 		rightPaddle = new Paddle(700, 100, 10, 100, Color.GREEN, 5);
 
+		top = new Wall(0,0,800,10,Color.GRAY);
+		bottom = new Wall(0,550,800,10,Color.GRAY);
+		left = new Wall(0,10,10,525,Color.GRAY);
+		right = new Wall(775,10,10,525,Color.GRAY);
 
 		keys = new boolean[4];
 
@@ -74,17 +79,20 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		
 		
 		//see if ball hits left wall or right wall
-		if(!(ball.getX()>=10 && ball.getX()<=780))
+//		if(!(ball.getX()>=10 && ball.getX()<=780))
+		if((ball.didCollideLeft(left) || ball.didCollideRight(right)))
 		{
 //			ball.setxSpeed(0);
 //			ball.setySpeed(0);
 			
 			
-			if (ball.getX() <= 10 && done == false){
+//			if (ball.getX() <= 10 && done == false){
+			if (ball.didCollideLeft(left)){
 				p2score = p2score + 1;
 				//done = true;
 			}
-			if (ball.getX() >= 780 && done == false){
+//			if (ball.getX() >= 780 && done == false){
+			if (ball.didCollideRight(right)){
 				p1score = p1score + 1;
 				//done = true;
 			}
@@ -111,7 +119,11 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		
 		//see if the ball hits the top or bottom wall 
 		
-		if(!(ball.getY()>=10 && ball.getY()<=525)){
+//		if(!(ball.getY()>=10 && ball.getY()<=525)){
+//			ball.setySpeed(-1*ball.getySpeed());
+//		}
+		
+		if (ball.didCollideTop(top) || ball.didCollideBottom(bottom)){
 			ball.setySpeed(-1*ball.getySpeed());
 		}
 		
