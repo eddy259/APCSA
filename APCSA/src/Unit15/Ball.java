@@ -140,6 +140,7 @@ public class Ball extends Block implements Collidable
 				getY()+getHeight() >= p.getY() &&
 				getY()+getHeight() < p.getY() + p.getHeight()))
 		{
+			
 			return true;
 		}
 		
