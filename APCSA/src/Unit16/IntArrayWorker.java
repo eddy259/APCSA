@@ -13,37 +13,37 @@ public class IntArrayWorker
   }
   
   /**
-   * Method to return the total 
-   * @return the total of the values in the array
+   * Method to return the sum 
+   * @return the sum of the values in the array
    */
   public int getTotal()
   {
-    int total = 0;
+    int sum = 0;
     for (int row = 0; row < matrix.length; row++)
     {
       for (int col = 0; col < matrix[0].length; col++)
       {
-        total = total + matrix[row][col];
+        sum = sum + matrix[row][col];
       }
     }
-    return total;
+    return sum;
   }
   
   /**
-   * Method to return the total using a nested for-each loop
-   * @return the total of the values in the array
+   * Method to return the sum using a nested for-each loop
+   * @return the sum of the values in the array
    */
   public int getTotalNested()
   {
-    int total = 0;
+    int sum = 0;
     for (int[] rowArray : matrix)
     {
       for (int item : rowArray)
       {
-        total = total + item;
+        sum = sum + item;
       }
     }
-    return total;
+    return sum;
   }
   
   /**
@@ -79,6 +79,44 @@ public class IntArrayWorker
     System.out.println();
   }
   
+  public int getCount(int x){
+	  
+	  int count = 0;
+	  for(int r = 0;r < matrix.length;r++){
+		  for(int c = 0;c<matrix[0].length;c++){
+			  if(matrix[r][c] == x){
+				  count++;
+			  }
+		  }
+	  }
+	  
+	  return count;
+  }
+  
+  public int getLargest(){
+	  
+	  int max = Integer.MIN_VALUE;
+	  for(int r = 0; r < matrix.length; r++){
+		  for(int c = 0;c < matrix[r].length; c++){
+			  if (matrix[r][c] > max) {
+					max = matrix[r][c];
+			  }
+		  }
+	  }
+	  return max;
+  }
+  
+  public int getColTotal(int c){
+	  
+	  int sum = 0;
+	  
+	  for(int r = 0;r < matrix.length; r++) {
+		  sum = sum + matrix[r][c];
+	  }
+	  
+	  return sum;
+  }
+
   
   /** 
    * fill the array with a pattern

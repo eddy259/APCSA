@@ -52,6 +52,40 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testFixUnderwater(){
+	  Picture water = new Picture("water.jpg");
+	  water.explore();
+	  water.fixUnderwater();
+	  water.explore();
+  }
+  
+  public static void testMirrorArms(){
+	  Picture snowman = new Picture("snowman.jpg");
+	  snowman.explore();
+	  snowman.mirrorArms();
+	  snowman.explore();
+  }
+  
+  public static void testMirrorGull(){
+	  Picture seagull = new Picture("seagull.jpg");
+	  seagull.explore();
+	  seagull.mirrorGull();
+	  seagull.explore();
+  }
+  
+  public static void testMyCollage(){
+	  Picture canvas = new Picture("640x480.jpg");
+	  canvas.myCollage();
+	  canvas.explore();
+  }
+  
+  public static void testEdgeDetection()
+  {
+    Picture swan = new Picture("C:\\Users\\rcais\\Downloads\\Unit16\\pixLab\\images\\swan.jpg");
+    swan.edgeDetection(10);
+    swan.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -59,7 +93,7 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
@@ -73,7 +107,7 @@ public class PictureTester
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
-    //testEdgeDetection();
+    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
