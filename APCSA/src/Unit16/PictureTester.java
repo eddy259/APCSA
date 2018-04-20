@@ -79,17 +79,22 @@ public class PictureTester
 	  canvas.explore();
   }
   
-  public static void testEdgeDetection()
+  public static void testBlur()
   {
-    Picture swan = new Picture("C:\\Users\\rcais\\Downloads\\Unit16\\pixLab\\images\\swan.jpg");
-    swan.edgeDetection(10);
-    swan.explore();
+    Picture temple = new Picture("temple.jpg");
+    temple.explore();
+    temple.blur(0,0,400,400);
+    temple.explore();
+    temple.blur(100,0,400,400);
+    temple.explore();
+    
   }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
   {
+	testBlur();
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
@@ -107,7 +112,7 @@ public class PictureTester
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
-    testEdgeDetection();
+    //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

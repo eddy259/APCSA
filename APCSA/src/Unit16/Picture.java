@@ -451,18 +451,80 @@ public class Picture extends SimplePicture
 		  }
 	}
 	
-//	public void blur (int x, int y, int width, int height){
-//		Pixel[][] pixels = this.getPixels2D();
-//		  
-//		for(Pixel[] rowArray:pixels){
-//			  
-//			for(Pixel pixelObj : rowArray){
-//				  
-//				  int avg = (pixelObj.getBlue() + pixelObj.getGreen()+pixelObj.getRed())/3;
-//				  pixelObj.setColor(new Color(avg, avg, avg));
-//			}
-//		}
-//	}
+	public void blur (int x, int y, int width, int height){
+		Pixel[][] pixels = this.getPixels2D();
+		  
+		for(int r = y; r < height; r++){
+			  
+			for(int c = x; c < width; c++){
+				  if(r != 0 && c != 0 && r != 479 && c != 639){
+					  
+					//2:06 done with this alg that changes color a little
+					  
+//					  int redavg = ((pixels[r][c].getRed() + pixels[r+1][c].getRed() + pixels[r][c+1].getRed()
+//							  + pixels[r+1][c+1].getRed() + pixels[r-1][c].getRed() + pixels[r][c-1].getRed()
+//							  + pixels[r-1][c-1].getRed() + pixels[r-1][c+1].getRed() + pixels[r+1][c-1].getRed())/9);
+//					  
+//					  int blueavg = ((pixels[r][c].getBlue() + pixels[r+1][c].getBlue() + pixels[r][c+1].getBlue()
+//							  + pixels[r+1][c+1].getBlue() + pixels[r-1][c].getBlue() + pixels[r][c-1].getBlue()
+//							  + pixels[r-1][c-1].getBlue() + pixels[r-1][c+1].getBlue() + pixels[r+1][c-1].getBlue())/9);
+//					  
+//					  int greenavg = ((pixels[r][c].getGreen() + pixels[r+1][c].getGreen() + pixels[r][c+1].getGreen()
+//							  + pixels[r+1][c+1].getGreen() + pixels[r-1][c].getGreen() + pixels[r][c-1].getGreen()
+//							  + pixels[r-1][c-1].getGreen() + pixels[r-1][c+1].getGreen() + pixels[r+1][c-1].getGreen())/9);
+//					  
+//					  pixels[r][c].setColor(new Color(redavg, blueavg, greenavg));
+					  
+					  int redavg = ((pixels[r][c].getRed() + pixels[r+1][c].getRed() + pixels[r][c+1].getRed()
+							  + pixels[r+1][c+1].getRed())/4);
+					  
+					  int blueavg = ((pixels[r][c].getBlue() + pixels[r+1][c].getBlue() + pixels[r][c+1].getBlue()
+							  + pixels[r+1][c+1].getBlue())/4);
+					  
+					  int greenavg = ((pixels[r][c].getGreen() + pixels[r+1][c].getGreen() + pixels[r][c+1].getGreen()
+							  + pixels[r+1][c+1].getGreen())/4);
+					  
+					  pixels[r][c].setColor(new Color(redavg, blueavg, greenavg));
+					  
+//					  if((int)(2*Math.random()) == 1){
+//						  pixels[r][c].setColor(new Color(pixels[r+1][c].getRed(), pixels[r+1][c].getBlue(), pixels[r+1][c].getGreen()));
+//					  }
+					  
+					  
+					  //2:06 done with this alg that changes color a little
+					  
+					  
+				  }
+				  
+			}
+		}
+		
+		
+		
+		
+		
+		for(int r = y; r < height; r++){
+			  
+			for(int c = x; c < width; c++){
+				  if(r != 0 && c != 0 && r != 479 && c != 639){
+					  
+					  
+					  int redavg = ((pixels[r][c].getRed() + pixels[r+1][c].getRed() + pixels[r][c+1].getRed()
+							  + pixels[r+1][c+1].getRed())/4);
+					  
+					  int blueavg = ((pixels[r][c].getBlue() + pixels[r+1][c].getBlue() + pixels[r][c+1].getBlue()
+							  + pixels[r+1][c+1].getBlue())/4);
+					  
+					  int greenavg = ((pixels[r][c].getGreen() + pixels[r+1][c].getGreen() + pixels[r][c+1].getGreen()
+							  + pixels[r+1][c+1].getGreen())/4);
+					  
+					  pixels[r][c].setColor(new Color(redavg, blueavg, greenavg));
+					  
+				  }
+				  
+			}
+		}
+	}
 	
   /* Main method for testing - each class in Java can have a main 
    * method 
