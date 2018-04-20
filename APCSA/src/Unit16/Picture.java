@@ -524,6 +524,50 @@ public class Picture extends SimplePicture
 				  
 			}
 		}
+		
+		for(int r = y; r < height; r++){
+			  
+			for(int c = x; c < width; c++){
+				  if(r != 0 && c != 0 && r != 479 && c != 639){
+					  
+					  
+					  int redavg = ((pixels[r][c].getRed() + pixels[r+1][c].getRed() + pixels[r][c+1].getRed()
+							  + pixels[r+1][c+1].getRed())/4);
+					  
+					  int blueavg = ((pixels[r][c].getBlue() + pixels[r+1][c].getBlue() + pixels[r][c+1].getBlue()
+							  + pixels[r+1][c+1].getBlue())/4);
+					  
+					  int greenavg = ((pixels[r][c].getGreen() + pixels[r+1][c].getGreen() + pixels[r][c+1].getGreen()
+							  + pixels[r+1][c+1].getGreen())/4);
+					  
+					  pixels[r][c].setColor(new Color(redavg, blueavg, greenavg));
+					  
+				  }
+				  
+			}
+		}
+		
+		for(int r = y; r < height; r++){
+			  
+			for(int c = x; c < width; c++){
+				  if(r != 0 && c != 0 && r != 479 && c != 639){
+					  
+					  
+					  int redavg = ((pixels[r][c].getRed() + pixels[r+1][c].getRed() + pixels[r][c+1].getRed()
+							  + pixels[r+1][c+1].getRed())/4);
+					  
+					  int blueavg = ((pixels[r][c].getBlue() + pixels[r+1][c].getBlue() + pixels[r][c+1].getBlue()
+							  + pixels[r+1][c+1].getBlue())/4);
+					  
+					  int greenavg = ((pixels[r][c].getGreen() + pixels[r+1][c].getGreen() + pixels[r][c+1].getGreen()
+							  + pixels[r+1][c+1].getGreen())/4);
+					  
+					  pixels[r][c].setColor(new Color(redavg, blueavg, greenavg));
+					  
+				  }
+				  
+			}
+		}
 	}
 	
   /* Main method for testing - each class in Java can have a main 

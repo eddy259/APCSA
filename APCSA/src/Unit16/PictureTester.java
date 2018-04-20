@@ -83,9 +83,11 @@ public class PictureTester
   {
     Picture temple = new Picture("temple.jpg");
     temple.explore();
-    temple.blur(0,0,400,400);
+    temple.blur(100,100,400,400);
     temple.explore();
-    temple.blur(100,0,400,400);
+    temple.blur(100,100,400,400);
+    temple.explore();
+    temple.blur(100,100,400,400);
     temple.explore();
     
   }
