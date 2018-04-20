@@ -457,7 +457,7 @@ public class Picture extends SimplePicture
 		for(int r = y; r < height; r++){
 			  
 			for(int c = x; c < width; c++){
-				  if(r != 0 && c != 0 && r != 479 && c != 639){
+				  if(r > 0 && c > 0 && r < 479 && c < 639){
 					  
 					//2:06 done with this alg that changes color a little
 					  
