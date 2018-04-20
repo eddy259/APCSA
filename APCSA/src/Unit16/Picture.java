@@ -432,12 +432,14 @@ public class Picture extends SimplePicture
 	public void mirrorDiagonal(){
 		
 		  Pixel[][] pixels = this.getPixels2D();
+		  int cap;
 		  
 		  if (pixels.length>pixels[0].length) {
-			int cap = pixels[0].length;
+			cap = pixels[0].length;
 		  } 
 		  else {
-			int cap = pixels.length;
+			
+			cap = pixels.length;
 		  }
 		 
 		  
@@ -449,6 +451,8 @@ public class Picture extends SimplePicture
 			  }
 		  }
 	}
+	
+	
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
