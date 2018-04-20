@@ -136,7 +136,6 @@ public class Picture extends SimplePicture
     int mirrorPoint = 276;
     Pixel leftPixel = null;
     Pixel rightPixel = null;
-    int count = 0;
     Pixel[][] pixels = this.getPixels2D();
     
     // loop through the rows
@@ -452,6 +451,18 @@ public class Picture extends SimplePicture
 		  }
 	}
 	
+//	public void blur (int x, int y, int width, int height){
+//		Pixel[][] pixels = this.getPixels2D();
+//		  
+//		for(Pixel[] rowArray:pixels){
+//			  
+//			for(Pixel pixelObj : rowArray){
+//				  
+//				  int avg = (pixelObj.getBlue() + pixelObj.getGreen()+pixelObj.getRed())/3;
+//				  pixelObj.setColor(new Color(avg, avg, avg));
+//			}
+//		}
+//	}
 	
   /* Main method for testing - each class in Java can have a main 
    * method 
