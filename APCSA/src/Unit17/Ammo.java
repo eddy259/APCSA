@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 public class Ammo extends MovingThing
 {
 	private int speed;
+	
 
 	public Ammo()
 	{
@@ -21,27 +22,37 @@ public class Ammo extends MovingThing
 
 	public Ammo(int x, int y)
 	{
+		super(x,y);
 		//add code
 	}
 
 	public Ammo(int x, int y, int s)
 	{
+		super(x,y);
+		speed = s;
 		//add code
+		
+		
 	}
 
 	public void setSpeed(int s)
 	{
+		speed = s;
 	   //add code
 	}
 
 	public int getSpeed()
 	{
-	   return 0;
+	   return speed;
 	}
 
 	public void draw( Graphics window )
 	{
 		//add code to draw the ammo
+		window.setColor(Color.BLUE);
+		
+		window.fillRect(getX(), getY(), 20, 20);
+		this.move("UP");
 	}
 
 	public String toString()

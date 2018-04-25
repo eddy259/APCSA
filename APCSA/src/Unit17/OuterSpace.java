@@ -22,11 +22,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Alien alienOne;
 	private Alien alienTwo;
 
-	/* uncomment once you are ready for this part
-	 *
 	private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
-	*/
+	
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -96,8 +94,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		alienOne.move("LEFT");
 		alienTwo.move("RIGHT");
 		
-		if(alienOne.getX() < 0 || alienOne.getX() > 590 || alienOne.getX() < 0 || alienTwo.getX() > 590){
-			
+		if(alienOne.getX() < 0 || alienOne.getX() > 700){
+			alienOne.setSpeed(-1*alienOne.getSpeed());
+		}
+		
+		if(alienTwo.getX() < 0 || alienTwo.getX() > 700){
+			alienTwo.setSpeed(-1*alienTwo.getSpeed());
 		}
 		ship.draw(graphToBack);
 		twoDGraph.drawImage(back, null, 0, 0);
