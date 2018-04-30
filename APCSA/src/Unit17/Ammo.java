@@ -34,11 +34,21 @@ public class Ammo extends MovingThing
 		
 		
 	}
+	
+	
 
 	public void setSpeed(int s)
 	{
 		speed = s;
 	   //add code
+	}
+	
+	public boolean hitAlien(Alien x){
+		if(this.getX() < x.getX() + 55 && this.getX() > x.getX() + 7 && this.getY() > x.getY() && this.getY() < x.getY() + 100) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	public int getSpeed()

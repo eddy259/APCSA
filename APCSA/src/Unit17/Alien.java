@@ -32,7 +32,7 @@ public class Alien extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\alien.jpg"));
+			image = ImageIO.read(new File("\\C:\\Users\\ED2016\\git\\APCSA\\APCSA\\src\\Unit17\\alien.jpg"));
 		}
 		catch(Exception e)
 		{
