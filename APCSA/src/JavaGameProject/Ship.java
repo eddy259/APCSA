@@ -3,37 +3,37 @@
 //Date -
 //Class -
 //Lab  -
-
-package Unit17;
+package JavaGameProject;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Alien extends MovingThing
+public class Ship extends MovingThing
 {
-	private int speed;
+	private double speed;
 	private Image image;
 
-	public Alien()
+	public Ship()
 	{
 		this(0,0,0);
 	}
 
-	public Alien(int x, int y)
+	public Ship(int x, int y)
 	{
 		this(x,y,0);
 	}
 
-	public Alien(int x, int y, int s)
+	public Ship(int x, int y, int s)
 	{
 		super(x, y);
-		speed=s;
+		speed = s;
 		try
 		{
-			image = ImageIO.read(new File("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\alien.jpg"));
-			//image = ImageIO.read(new File("\\C:\\Users\\ED2016\\git\\APCSA\\APCSA\\src\\Unit17\\alien.jpg"));
+			//image = ImageIO.read(new File("\\C:\\Users\\ED2016\\git\\APCSA\\APCSA\\src\\Unit17\\ship.jpg"));
+			image = ImageIO.read(new File("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\ship.jpg"));
+		
 		}
 		catch(Exception e)
 		{
@@ -42,13 +42,14 @@ public class Alien extends MovingThing
 		}
 	}
 
-	public void setSpeed(int s)
+
+	public void setSpeed(double s)
 	{
-	   //add code
+	   //add more code
 		speed = s;
 	}
 
-	public int getSpeed()
+	public double getSpeed()
 	{
 	   return speed;
 	}
@@ -60,6 +61,6 @@ public class Alien extends MovingThing
 
 	public String toString()
 	{
-		return "";
+		return super.toString() + getSpeed();
 	}
 }

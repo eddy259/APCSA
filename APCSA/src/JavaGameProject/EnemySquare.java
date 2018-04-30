@@ -4,29 +4,29 @@
 //Class -
 //Lab  -
 
-package Unit17;
+package JavaGameProject;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Alien extends MovingThing
+public class EnemySquare extends MovingThing
 {
 	private int speed;
 	private Image image;
 
-	public Alien()
+	public EnemySquare()
 	{
 		this(0,0,0);
 	}
 
-	public Alien(int x, int y)
+	public EnemySquare(int x, int y)
 	{
 		this(x,y,0);
 	}
 
-	public Alien(int x, int y, int s)
+	public EnemySquare(int x, int y, int s)
 	{
 		super(x, y);
 		speed=s;
