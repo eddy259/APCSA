@@ -32,3 +32,5 @@ public class StarFighter extends JFrame
 		StarFighter run = new StarFighter();
 	}
 }
+
+//finished lab assessment in 35 mins, 2:10 - 2:45

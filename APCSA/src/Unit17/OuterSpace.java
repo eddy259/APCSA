@@ -25,13 +25,17 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	//private ArrayList<Alien> aliens;
 	private Aliens aliens;
 	private ArrayList<Ammo> shots;
-	
+	private ArrayList<Ammo> alienshots;
+	private PowerUp pu;
 
 	private boolean[] keys;
 	private BufferedImage back;
 	
 	private int shootcount;
 	private int score;
+	private int alienshootcount;
+	
+	
 
 	public OuterSpace()
 	{
@@ -42,10 +46,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//instantiate other stuff
 		ship = new Ship(399,399,2);
 		shots = new ArrayList<Ammo>();
+		alienshots = new ArrayList<Ammo>();
 		aliens = new Aliens();
 		alienOne = new Alien(20,80,3);
 		alienTwo = new Alien(100,80,3);
+		pu = new PowerUp(200,200);
 		
+		alienshootcount = 0;
 		shootcount = 0;
 		score = 0;
 		
@@ -97,7 +104,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		if(keys[4] == true){
 			if(shootcount > 20){
-				shots.add(new Ammo(ship.getX() + 30, ship.getY() - 30, 4));
+				Ammo x = new Ammo(ship.getX() + 30, ship.getY() - 30, 4);
+				x.move("UP");
+				shots.add(x);
 				keys[4] = false;
 				shootcount = 0;
 			}
@@ -117,6 +126,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if(shots.size() > 0){
 			for(Ammo a : shots){
 				if(a.getY() > 0){
+					a.move("UP");
 					a.draw(graphToBack);
 					//shots.remove(a);
 				}
@@ -124,12 +134,39 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				if(a.hitAlien(alienOne)){
 					alienOne.setSpeed(0);
 					alienOne.setPos(-100, -100);
-					score++;
 					a = null;
+					score++;
+					
 				}
+				
 				
 			}
 		}
+		
+		if(alienshots.size() > 0){
+			for(Ammo a: alienshots){
+				if(a.getY() < 1000){
+					a.move("DOWN");
+					a.draw(graphToBack);
+				}
+			}
+		}
+		
+		if(ship.hitAlien(alienOne)){
+			if(ship.getPUstatus() == true){
+				ship.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\ship.jpg");
+				ship.setPUstatus(false);
+			}
+			else{
+				alienOne.setSpeed(0);
+				alienOne.setPos(-100, -100);
+				score--;
+			}
+			
+			
+		}
+		
+		
 		
 		if(alienOne != null){
 			alienOne.draw(graphToBack);
@@ -146,6 +183,22 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					aliens.alienAt(r, c).draw(graphToBack);
 					aliens.alienAt(r, c).move("RIGHT");
 					
+					//aliens shooting
+					if(alienshootcount > 500){
+						Ammo a = new Ammo(aliens.alienAt(r, c).getX() + 30, aliens.alienAt(r, c).getY() + 30, 1);
+						a.move("DOWN");
+						alienshots.add(a);
+						alienshootcount = 0;
+					}
+					else{
+						if(alienshootcount < 1000){
+							alienshootcount++;
+						}
+						
+					}
+					
+					
+					//shots hitting aliens
 					if(shots.size() > 0){
 						for(int i = 0;i < shots.size(); i++){
 							if(shots.get(i).hitAlien(aliens.alienAt(r, c)) && shots.get(i) != null){
@@ -156,6 +209,20 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 						}
 					}
 					
+					//ship hitting aliens
+					if(ship.hitAlien(aliens.alienAt(r, c))){
+						if(ship.getPUstatus() == true){
+							ship.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\ship.jpg");
+							ship.setPUstatus(false);
+						}
+						else{
+							aliens.delete(r, c);
+							score--;
+						}
+						
+					}
+					
+					//aliens rebounding off of walls
 					if(aliens.alienAt(r, c).getX() > 700 || aliens.alienAt(r, c).getX() < 0) {
 						aliens.alienAt(r, c).setSpeed(-aliens.alienAt(r, c).getSpeed());
 					}
@@ -163,6 +230,25 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					
 					
 				
+			}
+		}
+		
+		
+		//shots hitting ship
+		
+		for(Ammo a : alienshots){
+			
+			if(a.hitShip(ship) && a.getHit() == false){
+				if(ship.getPUstatus() == true){
+					ship.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\ship.jpg");
+					ship.setPUstatus(false);
+					a.setHit(true);
+				}
+				else{
+					score--;	
+				}
+				
+				a.setHit(true);
 			}
 		}
 		
@@ -181,8 +267,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 //		}
 	
 		
+		if(ship.hitPowerUp(pu)){
+			ship.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\ship.jpgWithShield.jpg");
+			pu.setPos(-100, -100);
+		}
 		
-		
+		pu.draw(graphToBack);
 		ship.draw(graphToBack);
 		twoDGraph.drawImage(back, null, 0, 0);
 	}

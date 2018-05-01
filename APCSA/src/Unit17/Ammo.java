@@ -13,16 +13,18 @@ import javax.imageio.ImageIO;
 public class Ammo extends MovingThing
 {
 	private int speed;
-	
+	private boolean hit;
 
 	public Ammo()
 	{
 		this(0,0,0);
+		hit = false;
 	}
 
 	public Ammo(int x, int y)
 	{
 		super(x,y);
+		hit = false;
 		//add code
 	}
 
@@ -30,12 +32,18 @@ public class Ammo extends MovingThing
 	{
 		super(x,y);
 		speed = s;
+		hit = false;
 		//add code
 		
 		
 	}
 	
-	
+	public void setHit(boolean b){
+		hit = b;
+	}
+	public boolean getHit(){
+		return hit;
+	}
 
 	public void setSpeed(int s)
 	{
@@ -45,6 +53,14 @@ public class Ammo extends MovingThing
 	
 	public boolean hitAlien(Alien x){
 		if(this.getX() < x.getX() + 55 && this.getX() > x.getX() + 7 && this.getY() > x.getY() && this.getY() < x.getY() + 100) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean hitShip(Ship s){
+		if(this.getX() < s.getX() + 55 && this.getX() > s.getX() + 7 && this.getY() > s.getY() && this.getY() < s.getY() + 100) {
 			return true;
 		}
 		
@@ -62,7 +78,7 @@ public class Ammo extends MovingThing
 		window.setColor(Color.BLUE);
 		
 		window.fillRect(getX(), getY(), 20, 20);
-		this.move("UP");
+		//this.move("UP");
 	}
 
 	public String toString()
