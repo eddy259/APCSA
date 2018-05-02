@@ -5,6 +5,7 @@
 //Lab  -
 package JavaGameProject;
 import java.awt.Color;
+import java.util.*;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
@@ -37,7 +38,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		keys = new boolean[5];
 
 		//instantiate other stuff
-		ship = new Ship(399,399,2);
+		ship = new Ship(399,399,1);
 	
 		aliens = new EnemySquares();
 		
@@ -101,23 +102,37 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		
 		
+		int count = 0;
 		
-		for(int r = 0;r < 3;r++){
-			for(int c = 0;c < 3;c++){
+		for(int i = 0;i < aliens.getSize();i++){
 					
-					aliens.alienAt(r, c).draw(graphToBack);
-					aliens.alienAt(r, c).move("RIGHT");
+				aliens.alienAt(i).draw(graphToBack);
+				if(count > 2){
+					aliens.alienAt(i).move("DOWN");
+					count = 0;
+				}
+				else{
+					aliens.alienAt(i).move("");
+					count++;
+				}
+					
+//					try        
+//					{
+//					    Thread.sleep(1000);
+//					} 
+//					catch(InterruptedException ex) 
+//					{
+//					    Thread.currentThread().interrupt();
+//					}
 					
 					
-					
-					if(aliens.alienAt(r, c).getX() > 700 || aliens.alienAt(r, c).getX() < 0) {
-						aliens.alienAt(r, c).setSpeed(-aliens.alienAt(r, c).getSpeed());
+					if(aliens.alienAt(i).getY() > 600) {
+						aliens.delete(i);
 					}
 					
 					
 					
 				
-			}
 		}
 		
 		

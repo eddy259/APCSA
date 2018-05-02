@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 
 public class EnemySquare extends MovingThing
 {
-	private int speed;
+	private double speed;
 	private Image image;
 
 	public EnemySquare()
@@ -32,7 +32,7 @@ public class EnemySquare extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\alien.jpg"));
+			image = ImageIO.read(new File("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\redsquare.png"));
 			//image = ImageIO.read(new File("\\C:\\Users\\ED2016\\git\\APCSA\\APCSA\\src\\Unit17\\alien.jpg"));
 		}
 		catch(Exception e)
@@ -42,22 +42,52 @@ public class EnemySquare extends MovingThing
 		}
 	}
 
-	public void setSpeed(int s)
+	public void setSpeed(double s)
 	{
 	   //add code
 		speed = s;
 	}
 
-	public int getSpeed()
+	public double getSpeed()
 	{
 	   return speed;
 	}
 
 	public void draw( Graphics window )
 	{
-		window.drawImage(image,getX(),getY(),80,80,null);
+		window.drawImage(image,getX(),getY(),10,10,null);
 	}
 
+	public void move(String direction)
+	{
+		
+		if(direction.equals("LEFT"))
+			setX((int)(getX()-getSpeed()));
+		if(direction.equals("RIGHT"))
+		    setX((int)(getX()+getSpeed()));
+		if(direction.equals("UP"))
+		    setY((int)(getY()-getSpeed()));
+		if(direction.equals("DOWN"))
+//			try        
+//			{
+//			    Thread.sleep(1);
+//			} 
+//			catch(InterruptedException ex) 
+//			{
+//			    Thread.currentThread().interrupt();
+//			}
+			
+				
+			if((int)(Math.random() * 2) == 1){
+				setY((int)(getY()+getSpeed()));
+			}
+			
+			
+		    
+
+      //add more code to complete the move method
+	}
+	
 	public String toString()
 	{
 		return "";

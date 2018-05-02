@@ -25,14 +25,14 @@ public class Ship extends MovingThing
 		this(x,y,0);
 	}
 
-	public Ship(int x, int y, int s)
+	public Ship(int x, int y, double s)
 	{
 		super(x, y);
 		speed = s;
 		try
 		{
 			//image = ImageIO.read(new File("\\C:\\Users\\ED2016\\git\\APCSA\\APCSA\\src\\Unit17\\ship.jpg"));
-			image = ImageIO.read(new File("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\Unit17\\ship.jpg"));
+			image = ImageIO.read(new File("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\greensquare.png"));
 		
 		}
 		catch(Exception e)
@@ -56,7 +56,7 @@ public class Ship extends MovingThing
 
 	public void draw( Graphics window )
 	{
-		window.drawImage(image,getX(),getY(),80,80,null);
+		window.drawImage(image,getX(),getY(),10,10,null);
 	}
 
 	public String toString()
