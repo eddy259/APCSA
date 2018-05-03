@@ -16,6 +16,7 @@ import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import static java.util.concurrent.TimeUnit.*;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
@@ -29,12 +30,16 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private BufferedImage back;
 	
 	private int shootcount;
-	private int score;
+	private int lives;
+	private int count;
+	private int stage;
 
 	public OuterSpace()
 	{
+		//final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+		int stage = 0;
 		setBackground(Color.black);
-
+		count = 0;
 		keys = new boolean[5];
 
 		//instantiate other stuff
@@ -43,7 +48,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		aliens = new EnemySquares();
 		
 		shootcount = 0;
-		score = 0;
+		lives = 5;
 		
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -75,7 +80,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 		graphToBack.setColor(Color.WHITE);
-		graphToBack.drawString("SCORE: "+ score, 50, 50);
+		graphToBack.drawString("LIVES: "+ lives, 50, 50);
 		graphToBack.setColor(Color.BLACK);
 
 		if(keys[0] == true)
@@ -102,19 +107,23 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		
 		
-		int count = 0;
+		
+		if(count > 1){
+			aliens.add(new EnemySquare((int)(Math.random() * 800),0,1));
+			count = 0;
+		}
+		else{
+			count++;
+		}
 		
 		for(int i = 0;i < aliens.getSize();i++){
 					
 				aliens.alienAt(i).draw(graphToBack);
-				if(count > 2){
-					aliens.alienAt(i).move("DOWN");
-					count = 0;
-				}
-				else{
-					aliens.alienAt(i).move("");
-					count++;
-				}
+			
+				aliens.alienAt(i).move("DOWN");
+					
+				
+				
 					
 //					try        
 //					{
@@ -124,11 +133,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 //					{
 //					    Thread.currentThread().interrupt();
 //					}
+				
+				if(ship.hitEnemy(aliens.alienAt(i))){
+					aliens.delete(i);
+					lives--;
+				}
 					
-					
-					if(aliens.alienAt(i).getY() > 600) {
-						aliens.delete(i);
-					}
+				if(aliens.alienAt(i).getY() > 600) {
+					aliens.delete(i);
+				}
 					
 					
 					

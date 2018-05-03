@@ -14,7 +14,7 @@ public class EnemySquares {
 //			}
 //		}
 		int count = 0;
-		while(count < 100){
+		while(count < 50){
 			enemylist.add(new EnemySquare((int)(Math.random() * 800),0,1));
 			count++;
 		}
@@ -23,6 +23,10 @@ public class EnemySquares {
 	
 	public List<EnemySquare> getEnemylist(){
 		return enemylist;
+	}
+	
+	public void add(EnemySquare e){
+		enemylist.add(e);
 	}
 	
 	public int getSize(){
