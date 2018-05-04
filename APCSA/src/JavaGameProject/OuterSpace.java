@@ -97,6 +97,16 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			ship.move("DOWN");
 		}
 		
+		if(ship.getX() > 781){
+			ship.setX(781);
+		}
+		if(ship.getX() < 0){
+			ship.setX(0);
+		}
+		if(ship.getY() > 559){
+			ship.setY(559);
+		}
+		
 		
 		
 		//add code to move stuff
