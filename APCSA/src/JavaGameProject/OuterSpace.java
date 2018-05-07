@@ -20,11 +20,15 @@ import static java.util.concurrent.TimeUnit.*;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
+	private StartScreen Start;
 	private Ship ship;
+	
 
 	//private ArrayList<Alien> aliens;
 	private EnemySquares aliens;
-	
+	private CheckPoint cpoint1;
+	private CheckPoint cpoint2;
+	private CheckPoint cpoint3;
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -38,12 +42,16 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	{
 		//final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 		int stage = 0;
+		Start = new StartScreen();
 		setBackground(Color.black);
 		count = 0;
 		keys = new boolean[5];
 
 		//instantiate other stuff
-		ship = new Ship(399,399,1);
+		ship = new Ship(-1000,-1000,1);
+		cpoint1 = new CheckPoint(-1000,-1000,0);
+		cpoint2 = new CheckPoint(-1000,-1000,0);
+		cpoint3 = new CheckPoint(-1000,-1000,0);
 	
 		aliens = new EnemySquares();
 		
@@ -74,6 +82,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
+		
+		
 
 		graphToBack.setColor(Color.WHITE);
 		graphToBack.drawString("DODGER ", 25, 50 );
@@ -82,6 +92,18 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.WHITE);
 		graphToBack.drawString("LIVES: "+ lives, 50, 50);
 		graphToBack.setColor(Color.BLACK);
+		
+		if(stage == 0){
+			Start.draw(graphToBack);
+			if(keys[4] == true){
+				stage = 1;
+				ship.setPos(399, 500);
+				cpoint1.setPos(600,100);
+				cpoint2.setPos(500,400);
+				cpoint3.setPos(50,250);
+				
+			}
+		}
 
 		if(keys[0] == true)
 		{
@@ -158,12 +180,29 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				
 		}
 		
+		if(ship.hitCheckPoint(cpoint1)){
+			cpoint1.setChecked(true);
+		}
+		if(ship.hitCheckPoint(cpoint2)){
+			cpoint2.setChecked(true);
+		}
+		if(ship.hitCheckPoint(cpoint3)){
+			cpoint3.setChecked(true);
+		}
 		
+		if(cpoint1.getChecked() == true){
+			cpoint1.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare.png");
+		}
+		if(cpoint2.getChecked() == true){
+			cpoint2.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare.png");
+		}
+		if(cpoint3.getChecked() == true){
+			cpoint3.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare.png");
+		}
 		
-	
-		
-		
-		
+		cpoint1.draw(graphToBack);
+		cpoint2.draw(graphToBack);
+		cpoint3.draw(graphToBack);
 		ship.draw(graphToBack);
 		twoDGraph.drawImage(back, null, 0, 0);
 	}

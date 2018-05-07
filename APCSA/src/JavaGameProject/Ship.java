@@ -68,6 +68,16 @@ public class Ship extends MovingThing
 		
 		return false;
 	}
+	
+	public boolean hitCheckPoint(CheckPoint x){
+		if(this.getX() < x.getX() + 20 && this.getX() > x.getX() && this.getY() > x.getY() && this.getY() < x.getY() + 20) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 
 	public String toString()
 	{
