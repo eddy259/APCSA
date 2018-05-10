@@ -20,21 +20,21 @@ public class CheckPoint extends MovingThing
 	public CheckPoint()
 	{
 		this(0,0,0);
-		checked = false;
+		//checked = false;
 	}
 
 	public CheckPoint(int x, int y)
 	{
 		
 		this(x,y,0);
-		checked = false;
+		//checked = false;
 	}
 
 	public CheckPoint(int x, int y, int s)
 	{
 		
 		super(x, y);
-		checked = false;
+		//checked = false;
 		speed=s;
 		try
 		{
@@ -78,7 +78,11 @@ public class CheckPoint extends MovingThing
 	}
 	
 	public boolean getChecked(){
+		
+		
 		return checked;
+		
+		
 	}
 
 	public void move(String direction)

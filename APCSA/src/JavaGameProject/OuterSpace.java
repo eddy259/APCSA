@@ -21,6 +21,8 @@ import static java.util.concurrent.TimeUnit.*;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private StartScreen Start;
+	private WinScreen Win;
+	private LoseScreen Lose;
 	private Ship ship;
 	
 
@@ -29,6 +31,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private CheckPoint cpoint1;
 	private CheckPoint cpoint2;
 	private CheckPoint cpoint3;
+	private boolean alreadycheckedc1;
+	private boolean alreadycheckedc2;
+	private boolean alreadycheckedc3;
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -38,11 +43,14 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private int count;
 	private int stage;
 
+	
 	public OuterSpace()
 	{
 		//final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 		int stage = 0;
 		Start = new StartScreen();
+		Lose = new LoseScreen();
+		Win = new WinScreen();
 		setBackground(Color.black);
 		count = 0;
 		keys = new boolean[5];
@@ -52,7 +60,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		cpoint1 = new CheckPoint(-1000,-1000,0);
 		cpoint2 = new CheckPoint(-1000,-1000,0);
 		cpoint3 = new CheckPoint(-1000,-1000,0);
-	
+		alreadycheckedc1 = false;
+		alreadycheckedc2 = false;
+		alreadycheckedc3 = false;
+		
 		aliens = new EnemySquares();
 		
 		shootcount = 0;
@@ -104,6 +115,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				
 			}
 		}
+		
+		
 
 		if(keys[0] == true)
 		{
@@ -167,8 +180,14 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 //					}
 				
 				if(ship.hitEnemy(aliens.alienAt(i))){
-					aliens.delete(i);
-					lives--;
+					if(ship.hitCheckPoint(cpoint1) == true || ship.hitCheckPoint(cpoint2) == true || ship.hitCheckPoint(cpoint3) == true){
+						
+					}
+					else{
+						aliens.delete(i);
+						lives--;
+					}
+					
 				}
 					
 				if(aliens.alienAt(i).getY() > 600) {
@@ -180,30 +199,55 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				
 		}
 		
-		if(ship.hitCheckPoint(cpoint1)){
+		if(ship.hitCheckPoint(cpoint1) && alreadycheckedc1 == false){
 			cpoint1.setChecked(true);
+			//System.out.println("c1 first");
 		}
-		if(ship.hitCheckPoint(cpoint2)){
+		if(ship.hitCheckPoint(cpoint2) && alreadycheckedc2 == false){
 			cpoint2.setChecked(true);
 		}
-		if(ship.hitCheckPoint(cpoint3)){
+		if(ship.hitCheckPoint(cpoint3) && alreadycheckedc3 == false){
 			cpoint3.setChecked(true);
 		}
 		
-		if(cpoint1.getChecked() == true){
-			cpoint1.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare.png");
+		//USE CYANSQUARE2 CUZ IT IS MUCH SMALLER IMAGE
+		if(cpoint1.getChecked() == true && alreadycheckedc1 == false){
+			cpoint1.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare2.jpg");
+			//System.out.println("c1");
+			alreadycheckedc1 = true;
 		}
-		if(cpoint2.getChecked() == true){
-			cpoint2.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare.png");
+		if(cpoint2.getChecked() == true && alreadycheckedc2 == false){
+			cpoint2.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare2.jpg");
+			alreadycheckedc2 = true;
 		}
-		if(cpoint3.getChecked() == true){
-			cpoint3.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare.png");
+		if(cpoint3.getChecked() == true && alreadycheckedc3 == false){
+			cpoint3.setImage("\\C:\\Users\\lie2983\\Desktop\\APCSAGitRepository\\APCSA\\src\\JavaGameProject\\cyansquare2.jpg");
+			alreadycheckedc3 = true;
 		}
 		
 		cpoint1.draw(graphToBack);
 		cpoint2.draw(graphToBack);
 		cpoint3.draw(graphToBack);
 		ship.draw(graphToBack);
+		
+		if(cpoint1.getChecked() == true && cpoint2.getChecked() == true && cpoint3.getChecked() == true && ship.getY() < 0){
+			stage = 2;
+		}
+		
+		if(lives == 0){
+			stage = 3;
+		}
+		
+		//win and lose screens
+		if(stage == 2){
+			Win.draw(graphToBack);
+		}
+		
+		if(stage == 3){
+			Lose.draw(graphToBack);
+		}
+		
+		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
