@@ -3,16 +3,16 @@
 //Date -
 //Class -
 //Lab  -
-package Unit17;
+package JavaGameProject;
 import javax.swing.JFrame;
 import java.awt.Component;
 
-public class StarFighter extends JFrame
+public class Dodger extends JFrame
 {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 
-	public StarFighter()
+	public Dodger()
 	{
 		super("STARFIGHTER");
 		setSize(WIDTH,HEIGHT);
@@ -29,8 +29,6 @@ public class StarFighter extends JFrame
 
 	public static void main( String args[] )
 	{
-		StarFighter run = new StarFighter();
+		Dodger run = new Dodger();
 	}
 }
-
-//finished lab assessment in 35 mins, 2:10 - 2:45
