@@ -157,7 +157,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					}
 					
 					if(aliens.alienAt(r, c).getX() > 700 || aliens.alienAt(r, c).getX() < 0) {
+						
 						aliens.alienAt(r, c).setSpeed(-aliens.alienAt(r, c).getSpeed());
+					
 					}
 					
 					
