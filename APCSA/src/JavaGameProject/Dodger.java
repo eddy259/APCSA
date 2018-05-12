@@ -14,7 +14,7 @@ public class Dodger extends JFrame
 
 	public Dodger()
 	{
-		super("STARFIGHTER");
+		super("DODGER");
 		setSize(WIDTH,HEIGHT);
 
 		OuterSpace theGame = new OuterSpace();
